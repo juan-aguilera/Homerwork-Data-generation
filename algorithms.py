@@ -47,13 +47,13 @@ def read_locations():
 def numeric_assignation(data_list):
     # Assigns a numeric value for each different state 
     data_numbers = {}
-    numeric_assignations = data_list
+    numeric_assignations,data = data_list[:-1],data_list[:-1]
     cnt = 0
-    for i in range(len(data_list)):
-        if data_list[i] not in data_numbers.values():
+    for i in range(len(data)):
+        if data[i] not in data_numbers.values():
             cnt +=1
-            data_numbers[cnt] = data_list[i]
-    for i in range(len(numeric_assignations)-1): 
+            data_numbers[cnt] = data[i]
+    for i in range(len(numeric_assignations)): 
         a = [key for key, value in data_numbers.items() if value == numeric_assignations[i]]
         numeric_assignations[i] = a[0]
     return numeric_assignations,data_numbers
@@ -83,7 +83,7 @@ def read_sector():
     new_dict = df.to_dict()
     sector = new_dict['Sector']
     sector = list(sector.values())
-    return sector
+    return sector[:-1]
 def sector_generator(n):
     #variable Nº 3
     # i'll use a multinomial distribution so i need the occurrence probability of each state 
@@ -109,7 +109,7 @@ def read_founded_year():
     df = pd.read_excel('Stock Screener_2024-03-21 (1).xlsx', usecols=['Founded'])
     new_dict = df.to_dict()
     founded_year = list(new_dict['Founded'].values())
-    return founded_year
+    return founded_year[:-1]
 def founded_year_generator(n):
     #variable Nº 4
     # i'll use a multinomial distribution so i need the occurrence probability of each founded year 
@@ -130,7 +130,7 @@ def read_added_to_SP500_year():
     df = pd.read_excel('Stock Screener_2024-03-21 (1).xlsx', usecols=['Date added to S&P500'])
     new_dict = df.to_dict()
     added_year = list(new_dict['Date added to S&P500'].values())
-    return added_year
+    return added_year[:-1]
 def added_to_SP500_year_generator(n):
     #variable Nº 5
     # i'll use a multinomial distribution so i need the occurrence probability of each added year to SP&500 index
@@ -183,10 +183,10 @@ def generate_other_data_normal_nonegativos(column, n):
     return data_round
 
 
-if __name__ == "__main__":
 
-    final_data_dict = {}
-    data_lognormal = ["Market capitalization (Billions)",
+
+final_data_dict = {}
+data_lognormal = ["Market capitalization (Billions)",
         "Price","Volume 1 day", "Relative Volume 1 day",
         "Price to earnings ratio","Volume 1 day", 
         "Relative Volume 1 day","Volatility 1 month",
@@ -198,11 +198,11 @@ if __name__ == "__main__":
         "Number of shareholders, Annual", "Revenue per employee, Annual  (Millions)", "Cash to debt ratio, Annual",
         "Total liabilities, Annual (Billions)","Total assets, Quarterly (Billions)"]
     
-    data_normal_nonegativos = ["Dividend yield %, Trailing 12 months",
+data_normal_nonegativos = ["Dividend yield %, Trailing 12 months",
                                 "Dividends per share, Annual",
                                  "Dividends per share, Quarterly"]
     
-    def final_data(n):
+def final_data(n):
         final_data_dict["EIN Number"]= EIN_generator(n)
         final_data_dict["Headquaters location"] = locations_generator(n)
         final_data_dict["Sector"] = sector_generator(n)
@@ -229,6 +229,6 @@ if __name__ == "__main__":
         return final_data_dict
 
 
-    print(final_data(100000))
+#print(final_data(10))
    
     
