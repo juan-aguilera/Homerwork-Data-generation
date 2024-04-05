@@ -43,7 +43,7 @@ Getting Started
 
 To get started with this project, follow these steps:
 
-Clone the repository from GitHub: git clone https://github.com/juan-aguilera/Homerwork-Data-generation.git
+Clone the repository from GitHub: git clone https://github.com/your_username/financial-data-generator.git
 Run the data generation script: algorithms.py
 Explore the generated dataset in the excel spreadsheet (Companies Data.xlsx) 
 Contributions to this project are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue on GitHub or submit a pull request with your changes.
