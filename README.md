@@ -41,6 +41,7 @@ This project is intended for use by students enrolled in algorithm classes. By u
 
 Getting Started
 
+
 To get started with this project, follow these steps:
 
 Clone the repository from GitHub: git clone https://github.com/your_username/financial-data-generator.git
